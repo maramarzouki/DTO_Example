@@ -16,12 +16,12 @@ public class Main {
             DataMapper userMapper = new DataMapperImpl(connection);
 
             // Creating a new user
-            UserDTO newUserDTO = new UserDTO(0, "maram", "maram@gmail.com", "State", "12345");
-            userMapper.save(newUserDTO);
-            System.out.println("New user created with id: " + newUserDTO.getId());
+            Address address = new Address("street", "city", "state", "code");
+            User newUser = new User(0, "maram", "maram@gmail.com", address);
+            UserDTO userDTO = UserDTOMapper.mapUserToDTO(newUser);
+            userMapper.save(userDTO);
 
             // Finding a user by id
-            UserDTO userDTO = userMapper.findById(newUserDTO.getId());
             if (userDTO != null) {
                 System.out.println("Found user: " + userDTO.getUsername());
 
